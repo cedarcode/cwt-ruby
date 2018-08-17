@@ -12,3 +12,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+def create_token(payload: {})
+  CBOR.encode(["", "", payload, ""])
+end

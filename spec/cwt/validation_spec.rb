@@ -9,7 +9,12 @@ RSpec.describe "Validation" do
     expect(CWT.validate("whatever")).to be_falsy
   end
 
-  it "returns true if valid CBOR map" do
-    expect(CWT.validate(CBOR.encode(1 => 1))).to be_truthy
+  it "returns payload if valid" do
+    token = create_token(payload: { 1 => 1 })
+
+    payload = CWT.validate(token)
+
+    expect(payload).to be_truthy
+    expect(payload).to eq(1 => 1)
   end
 end
