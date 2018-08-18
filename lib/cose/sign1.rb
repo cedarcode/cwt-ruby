@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "cbor"
 
 module COSE
@@ -28,6 +30,7 @@ module COSE
           to_be_signed
         )
       rescue OpenSSL::PKey::PKeyError
+        false
       end
     end
 
@@ -39,7 +42,7 @@ module COSE
         payload
       ]
 
-      to_be_signed = CBOR.encode(sig_structure)
+      CBOR.encode(sig_structure)
     end
 
     def protected_headers
@@ -55,6 +58,7 @@ module COSE
         begin
           CBOR.decode(data)
         rescue
+          nil
         end
     end
   end

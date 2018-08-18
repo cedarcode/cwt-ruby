@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "bundler/setup"
 require "cwt"
 require "openssl"
@@ -18,10 +20,8 @@ def create_token(payload: {}, key:, signature: nil)
   protected_headers = ""
   unprotected_headers = ""
 
-
   signature ||= create_signature(
     protected_headers: protected_headers,
-    unprotected_headers: unprotected_headers,
     payload: payload,
     key: key
   )
@@ -33,7 +33,7 @@ def create_key
   OpenSSL::PKey::EC.new("prime256v1").generate_key
 end
 
-def create_signature(protected_headers:, unprotected_headers:, payload:, key:)
+def create_signature(protected_headers:, payload:, key:)
   sig_structure = [
     "Signature1",
     protected_headers,
@@ -43,5 +43,5 @@ def create_signature(protected_headers:, unprotected_headers:, payload:, key:)
 
   to_be_signed = CBOR.encode(sig_structure)
 
-  signature = key.sign("SHA256", to_be_signed)
+  key.sign("SHA256", to_be_signed)
 end

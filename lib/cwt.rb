@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "cose/sign1"
 require "cwt/version"
 
