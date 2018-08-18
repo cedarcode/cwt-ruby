@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "cwt"
+require "openssl"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -13,6 +14,34 @@ RSpec.configure do |config|
   end
 end
 
-def create_token(payload: {})
-  CBOR.encode(["", "", payload, ""])
+def create_token(payload: {}, key:, signature: nil)
+  protected_headers = ""
+  unprotected_headers = ""
+
+
+  signature ||= create_signature(
+    protected_headers: protected_headers,
+    unprotected_headers: unprotected_headers,
+    payload: payload,
+    key: key
+  )
+
+  CBOR.encode([protected_headers, unprotected_headers, payload, signature])
+end
+
+def create_key
+  OpenSSL::PKey::EC.new("prime256v1").generate_key
+end
+
+def create_signature(protected_headers:, unprotected_headers:, payload:, key:)
+  sig_structure = [
+    "Signature1",
+    protected_headers,
+    "",
+    payload
+  ]
+
+  to_be_signed = CBOR.encode(sig_structure)
+
+  signature = key.sign("SHA256", to_be_signed)
 end
