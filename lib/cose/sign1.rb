@@ -23,15 +23,13 @@ module COSE
     attr_reader :data
 
     def valid_signature?(key)
-      begin
-        key.verify(
-          "SHA256",
-          signature,
-          to_be_signed
-        )
-      rescue OpenSSL::PKey::PKeyError
-        false
-      end
+      key.verify(
+        "SHA256",
+        signature,
+        to_be_signed
+      )
+    rescue OpenSSL::PKey::PKeyError
+      false
     end
 
     def to_be_signed

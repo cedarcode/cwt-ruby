@@ -29,5 +29,8 @@ Security:
 Style/FrozenStringLiteralComment:
   Enabled: true
 
+Style/RedundantBegin:
+  Enabled: true
+
 Style/RedundantFreeze:
   Enabled: true
