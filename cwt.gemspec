@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Gonzalo Rodriguez"]
   spec.email         = ["gonzalo@cedarcode.com"]
 
-  spec.summary       = "Ruby implementation of CWT (RFC 8392)"
+  spec.summary       = "CBOR Web Token (CWT) ruby library"
   spec.homepage      = "https://github.com/cedarcode/cwt-ruby"
   spec.license       = "MIT"
 
