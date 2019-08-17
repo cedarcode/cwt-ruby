@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = "cwt"
   spec.version       = CWT::VERSION
   spec.authors       = ["Gonzalo Rodriguez"]
-  spec.email         = ["grzuy0@gmail.com"]
+  spec.email         = ["gonzalo@cedarcode.com"]
 
   spec.summary       = "Ruby implementation of RFC 8392 CBOR Web Token (CWT)"
   spec.homepage      = "https://github.com/cedarcode/cwt-ruby"
@@ -27,6 +27,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  spec.add_dependency "cose", "~> 0.9.0"
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "byebug", "~> 11.0"

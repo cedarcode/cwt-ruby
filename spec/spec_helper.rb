@@ -15,3 +15,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+def hex_to_bytes(hex_string)
+  [hex_string].pack("H*")
+end
