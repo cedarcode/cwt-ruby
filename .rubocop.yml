@@ -1,0 +1,36 @@
+require:
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.6
+  DisabledByDefault: true
+
+Bundler:
+  Enabled: true
+
+Gemspec:
+  Enabled: true
+
+Layout:
+  Enabled: true
+
+Lint:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 120
+
+Naming:
+  Enabled: true
+
+Performance:
+  Enabled: true
+
+Security:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/HashSyntax:
+  Enabled: true
