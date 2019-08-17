@@ -6,7 +6,7 @@ require "cwt/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "cwt"
-  spec.version       = Cwt::VERSION
+  spec.version       = CWT::VERSION
   spec.authors       = ["Gonzalo Rodriguez"]
   spec.email         = ["grzuy0@gmail.com"]
 

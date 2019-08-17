@@ -2,7 +2,7 @@
 
 require "cwt/version"
 
-module Cwt
+module CWT
   class Error < StandardError; end
   # Your code goes here...
 end
