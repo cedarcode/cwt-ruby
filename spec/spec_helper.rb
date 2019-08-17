@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
+require "byebug"
 require "cwt"
 
 RSpec.configure do |config|
