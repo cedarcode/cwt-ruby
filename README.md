@@ -1,6 +1,9 @@
 # cwt-ruby
 
-Ruby implementation of RFC 8392 CBOR Web Token (CWT)
+Ruby implementation of RFC [8392](https://tools.ietf.org/html/rfc8392) CBOR Web Token (CWT)
+
+[![Gem](https://img.shields.io/gem/v/cwt.svg?style=flat-square&color=informational)](https://rubygems.org/gems/cwt)
+[![Travis](https://img.shields.io/travis/cedarcode/cwt-ruby.svg?style=flat-square)](https://travis-ci.org/cedarcode/cwt-ruby)
 
 ## Installation
 
