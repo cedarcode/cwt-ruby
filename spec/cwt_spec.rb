@@ -2,7 +2,7 @@
 
 RSpec.describe CWT do
   # https://tools.ietf.org/html/rfc8392#appendix-A.3
-  it "decodes example A.3" do
+  it "decodes example A.3 (Signed CWT)" do
     signed_cwt = hex_to_bytes(
       "d28443a10126a104524173796d6d657472696345434453413235365850a70175636f61703a2f2f"\
       "61732e6578616d706c652e636f6d02656572696b77037818636f61703a2f2f6c696768742e6578"\
@@ -27,5 +27,51 @@ RSpec.describe CWT do
     expect(decoded_cwt.nbf).to eq(1443944944)
     expect(decoded_cwt.iat).to eq(1443944944)
     expect(decoded_cwt.cti).to eq(hex_to_bytes("0b71"))
+  end
+
+  it "decodes example A.4 (MACed CWT)" do
+    data = hex_to_bytes(
+      "d83dd18443a10104a1044c53796d6d65747269633235365850a70175636f6170"\
+      "3a2f2f61732e6578616d706c652e636f6d02656572696b77037818636f61703a"\
+      "2f2f6c696768742e6578616d706c652e636f6d041a5612aeb0051a5610d9f006"\
+      "1a5610d9f007420b7148093101ef6d789200"
+    )
+
+    cose_key = hex_to_bytes(
+      "a4205820403697de87af64611c1d32a05dab0fe1fcb715a86ab435f1ec99192d"\
+      "795693880104024c53796d6d6574726963323536030a"
+    )
+
+    cwt = CWT.decode(data, cose_key)
+
+    expect(cwt.iss).to eq("coap://as.example.com")
+    expect(cwt.sub).to eq("erikw")
+    expect(cwt.aud).to eq("coap://light.example.com")
+    expect(cwt.exp).to eq(1444064944)
+    expect(cwt.nbf).to eq(1443944944)
+    expect(cwt.iat).to eq(1443944944)
+    expect(cwt.cti).to eq(hex_to_bytes("0b71"))
+  end
+
+  it "decodes example A.7 (MACed CWT with a Floating-Point Value)" do
+    data = hex_to_bytes(
+      "d18443a10104a1044c53796d6d65747269633235364ba106fb41d584367c2000"\
+      "0048b8816f34c0542892"
+    )
+
+    cose_key = hex_to_bytes(
+      "a4205820403697de87af64611c1d32a05dab0fe1fcb715a86ab435f1ec99192d"\
+      "795693880104024c53796d6d6574726963323536030a"
+    )
+
+    cwt = CWT.decode(data, cose_key)
+
+    expect(cwt.iss).to eq(nil)
+    expect(cwt.sub).to eq(nil)
+    expect(cwt.aud).to eq(nil)
+    expect(cwt.exp).to eq(nil)
+    expect(cwt.nbf).to eq(nil)
+    expect(cwt.iat).to eq(1443944944.5)
+    expect(cwt.cti).to eq(nil)
   end
 end
