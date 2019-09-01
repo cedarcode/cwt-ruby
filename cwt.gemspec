@@ -11,12 +11,14 @@ Gem::Specification.new do |spec|
   spec.email         = ["gonzalo@cedarcode.com"]
 
   spec.summary       = "Ruby implementation of RFC 8392 CBOR Web Token (CWT)"
+  spec.description   = spec.summary
   spec.homepage      = "https://github.com/cedarcode/cwt-ruby"
   spec.license       = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
-  spec.metadata["changelog_uri"] = spec.homepage
+  spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/master/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
