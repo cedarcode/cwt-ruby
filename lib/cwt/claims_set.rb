@@ -39,5 +39,13 @@ module CWT
       @iat = iat
       @cti = cti
     end
+
+    def expired?
+      Time.now >= expiration_time
+    end
+
+    def expiration_time
+      Time.at(exp)
+    end
   end
 end

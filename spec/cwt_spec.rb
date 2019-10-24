@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "timecop"
+
 RSpec.describe CWT do
   # https://tools.ietf.org/html/rfc8392#appendix-A.3
   it "decodes example A.3 (Signed CWT)" do
@@ -27,6 +29,18 @@ RSpec.describe CWT do
     expect(decoded_cwt.nbf).to eq(1443944944)
     expect(decoded_cwt.iat).to eq(1443944944)
     expect(decoded_cwt.cti).to eq(hex_to_bytes("0b71"))
+
+    Timecop.freeze(Time.at(1444064944 + 1)) do
+      expect(decoded_cwt.expired?).to be_truthy
+    end
+
+    Timecop.freeze(Time.at(1444064944)) do
+      expect(decoded_cwt.expired?).to be_truthy
+    end
+
+    Timecop.freeze(Time.at(1444064944 - 1)) do
+      expect(decoded_cwt.expired?).to be_falsy
+    end
   end
 
   it "decodes example A.4 (MACed CWT)" do
