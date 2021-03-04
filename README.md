@@ -3,7 +3,7 @@
 Ruby implementation of RFC [8392](https://tools.ietf.org/html/rfc8392) CBOR Web Token (CWT)
 
 [![Gem](https://img.shields.io/gem/v/cwt.svg?style=flat-square&color=informational)](https://rubygems.org/gems/cwt)
-[![Travis](https://img.shields.io/travis/cedarcode/cwt-ruby/master.svg?style=flat-square)](https://travis-ci.org/cedarcode/cwt-ruby)
+[![Actions Build](https://github.com/cedarcode/cwt-ruby/workflows/build/badge.svg)](https://github.com/cedarcode/cwt-ruby/actions)
 
 ## Installation
 
